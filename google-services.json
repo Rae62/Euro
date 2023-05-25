@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "722842100650",
+    "project_id": "euro-5bfbd",
+    "storage_bucket": "euro-5bfbd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:722842100650:android:248b4c555ebcb994a801d3",
+        "android_client_info": {
+          "package_name": "com.rae62.Euro"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "722842100650-l25snl43o0r8n09t8sf3qq9mfo0f4k1q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rae62.Euro",
+            "certificate_hash": "7108b900fa695d337dd555e6006fe060f478ecf4"
+          }
+        },
+        {
+          "client_id": "722842100650-q6hb6es7b63sion7ks2t3m1bvkgdujgo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rae62.Euro",
+            "certificate_hash": "52ee9eeebdde2cfc134ba09349522fb768e0b82e"
+          }
+        },
+        {
+          "client_id": "722842100650-9l8mhac8eoa32mcra7j6j0cn3mrj0608.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgttjHDfmSF9eVq1uYqexoqie2FtvXJ4k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "722842100650-9l8mhac8eoa32mcra7j6j0cn3mrj0608.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

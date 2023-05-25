@@ -2,6 +2,18 @@
   "expo": {
     "name": "Euro",
     "slug": "Euro",
+    "plugins": [
+      [        "@react-native-google-signin/google-signin"
+    ],
+      [
+        "react-native-fbsdk-next",
+        {
+          "appID": "1881759145557747",
+          "clientToken": "39a8e1a9b15786e6b4cfcd295b0eaeb1",
+          "displayName": "Euro"
+        }
+      ]
+    ],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -18,13 +30,20 @@
       "supportsTablet": true
     },
     "android": {
+      "googleServicesFile": "./google-services.json",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.rae62.Euro"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "bb3fb16b-0a20-454f-9704-6ffce09d03df"
+      }
     }
   }
 }
