@@ -42,7 +42,7 @@ export default function Homepage() {
         title="Continue with Mail"
         color="#ffa502"
         name="MailIcon"
-        press="Form"
+        press="SignIn"
 
       />
       <Text style={{color:'white' }}>or sign in with 
