@@ -11,7 +11,7 @@ export default function Homepage() {
   const navigation = useNavigation();
 
   function handleClick() {
-    navigation.navigate("GoogleLogin");
+    navigation.navigate("OtpLogin");
   }
   return (
     <LinearGradient

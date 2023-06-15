@@ -6,6 +6,7 @@ import GoogleLogin from "./components/home_login_register/login_register/GoogleL
 import FacebookLogin from "./components/home_login_register/login_register/FacebookLogin";
 import SignIn from "./components/home_login_register/login_register/SignIn";
 import SignUp from "./components/home_login_register/login_register/SignUp";
+import OtpLogin from "./components/home_login_register/login_register/OtpLogin";
 import {firebase} from './config'
 import Dashboard from "./components/Dashboard";
 
@@ -38,6 +39,7 @@ function App() {
         <Stack.Screen name="SignIn" component={SignIn} />
         <Stack.Screen name="GoogleLogin" component={GoogleLogin} />
         <Stack.Screen name="FacebookLogin" component={FacebookLogin} />
+        <Stack.Screen name="OtpLogin" component={OtpLogin} />
         <Stack.Screen name="SignUp" component={SignUp} />
         </Stack.Navigator>
     )
