@@ -38,6 +38,7 @@ function App() {
         <Stack.Screen name="Main-Homepage" component={Homepage} />
         <Stack.Screen name="SignIn" component={SignIn} />
         <Stack.Screen name="GoogleLogin" component={GoogleLogin} />
+        <Stack.Screen name="Dashboard" component={Dashboard} />
         <Stack.Screen name="FacebookLogin" component={FacebookLogin} />
         <Stack.Screen name="OtpLogin" component={OtpLogin} />
         <Stack.Screen name="SignUp" component={SignUp} />

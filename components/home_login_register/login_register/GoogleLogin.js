@@ -1,77 +1,81 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, View } from 'react-native';
 import 'expo-dev-client';
-import { GoogleSignin , GoogleSigninButton } from '@react-native-google-signin/google-signin';
+import { GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/google-signin';
 import auth from '@react-native-firebase/auth';
 import React, { useState, useEffect } from 'react';
-import { useNavigation } from "@react-navigation/native";
-
-
-
-
-
+import { useNavigation } from '@react-navigation/native';
+import { firebase } from '../../../config';
 
 export default function GoogleLogin() {
-
-    // Set an initializing state whilst Firebase connects
-    const [initializing, setInitializing] = useState(true);
-    const [user, setUser] = useState();
-
-      // Handle user state changes
-  function onAuthStateChanged(user) {
-    setUser(user);
-    if (initializing) setInitializing(false);
-  }
+  const [initializing, setInitializing] = useState(true);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+    const subscriber = auth().onAuthStateChanged((user) => {
+      setUser(user);
+      setInitializing(false);
+    });
+
     return subscriber; // unsubscribe on unmount
   }, []);
 
+  const configureGoogleSignin = async () => {
+    await GoogleSignin.configure({
+      webClientId: '722842100650-uld17finnipicf5f5bgg0smh8pjlohu4.apps.googleusercontent.com',
+    });
+  };
+
+  useEffect(() => {
+    configureGoogleSignin();
+  }, []);
+
+  const navigation = useNavigation(); // Get navigation object
+
   const onGoogleButtonPress = async () => {
-    // Check if your device supports Google Play
-    await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
-    // Get the users ID token
-    const { idToken } = await GoogleSignin.signIn();
-  
-    // Create a Google credential with the token
-    const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-  
-    // Sign-in the user with the credential
-    const user_sign_in = auth().signInWithCredential(googleCredential);
-    user_sign_in.then((user) => {
-      console.log(user);
-    })
-    .catch((error) => {
+    try {
+      await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
+      const { idToken } = await GoogleSignin.signIn();
+      const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+      await auth().signInWithCredential(googleCredential);
+
+      const currentUser = firebase.auth().currentUser;
+      if (user) {
+        navigation.navigate('Dashboard', { displayName: user.displayName });
+      }
+    } catch (error) {
       console.log(error);
-    })
-  }
+    }
+  };
+
+  const signOut = async () => {
+    try {
+      await GoogleSignin.revokeAccess();
+      await auth().signOut();
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   if (initializing) return null;
 
-
-  GoogleSignin.configure({
-    webClientId: '722842100650-uld17finnipicf5f5bgg0smh8pjlohu4.apps.googleusercontent.com',
-  });
-  
-
-  if(!user) {
-    return(
+  if (!user) {
+    return (
       <View style={styles.container}>
         <GoogleSigninButton
-        style={{height: 300 , width: 65 , marginTop:300}}
-        onPress={onGoogleButtonPress}
+          style={{ height: 300, width: 65, marginTop: 300 }}
+          onPress={onGoogleButtonPress}
         />
       </View>
-    )
+    );
+  } else {
+    return (
+      <View style={styles.container}>
+        <Text>Welcome, {user.displayName}</Text>
+        <Button title="Sign Out" onPress={signOut} />
+      </View>
+    );
   }
-
-  return(
-    <View style={styles.container}>
-        <Text>Welcome , {user.displayName}</Text>
-    </View>
-  );
-
 }
 
 const styles = StyleSheet.create({
